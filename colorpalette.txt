@@ -1,0 +1,8 @@
+
+
+palette:
+#f7e8e3 - tan
+#75E6DA - turquoise
+#0069D2 - blue
+#00B5FF - light blue
+#d9e7ff - very light blue;

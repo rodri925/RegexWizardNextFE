@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&display=swap');
+
+
+.bigContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: #d9e7ff;
+    font-family: "Oswald", sans-serif;
+}
+
+.hrLineLP {
+    position: relative;
+    width: 50%;
+    bottom: 10%;
+    border: 3px solid white;
+}
+.smallContainer {
+    display: flex;
+    font-size: 1.25rem;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 25%;
+    height: 70%;
+    background-color: #75E6DA;
+    border-radius: 25px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.smallContainer p {
+    position: relative;
+    text-align: center;
+    font-size: 1.5rem;
+    bottom: 15%;
+    line-height: 2;
+}
+
+.smallContainer p span {
+    color: white;
+}
+
+.smallContainer .containerLink {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    bottom: 15%;
+    background-color: #0069D2;
+    color: white;
+    width: 40%;
+    height: 10%;
+    text-decoration: none;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.smallContainer .containerLink:hover {
+    background-color: darkblue;
+    transition-duration: .2s;
+}
+
+.smallContainer2{
+    background-color: #00B5FF;
+}
+
+@media all and (max-width: 600px) {
+    .bigContainer {
+        flex-direction: column;
+        height: 150vh;
+    }
+    .smallContainer {
+        width: 70%;
+    }
+
+    .smallContainer .containerLink {
+        height: 20%;
+    }
+
+    .hrLineLP {
+        bottom: 7%;
+    }
+}

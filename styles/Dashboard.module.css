@@ -1,0 +1,308 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&display=swap');
+
+.outerContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 90vh;
+    background-color: #d9e7ff;
+    font-family: "Oswald", sans-serif;
+}
+
+.outerContainer h1 {
+    position: relative;
+    align-self: flex-start;
+    margin-left: 15%;
+    top: 4%;
+    background-color: #75E6DA;
+    padding: 1%;
+    padding-right: 9%;
+    padding-left: 3%;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
+
+.innerContainer {
+ display: flex;
+ flex-direction: row;
+ justify-content: space-around;
+ align-items: center;
+ width: 90%;
+ height: 80%;
+ background-color: #75E6DA;
+ color: white;
+ border-radius: 50px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    height: 85%;
+    background-color: white;
+    border-radius: 25px;
+    border: 2px solid black;
+}
+
+.progress {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 50%;
+    background-color: white;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    color: black;
+    font-size: 1.20rem;
+}
+
+.progress span {
+    align-self: flex-start;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    margin-left: 5%;
+}
+
+.BarOuter {
+    position: relative;
+    width: 90%;
+    height: 20%;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 10px;;
+}
+
+.BarInner {
+    position: Absolute;
+    height: 100%;
+    background-color: greenyellow;
+    border-radius: 10px;
+}
+
+.missionIncompletes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 50%;
+    background-color: white;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+.incompleteBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #00B5FF;
+    border-radius: 10px;
+    width: 40%;
+    height: 85%;
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+.incompleteBox a {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    bottom: 10%;
+    background-color: #0069D2;
+    color: white;
+    width: 30%;
+    height: 20%;
+    text-decoration: none;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.incompleteBox a:hover {
+    background-color: darkblue;
+    transition-duration: .2s;
+}
+
+.incompleteBox p {
+    position: relative;
+    bottom: 10%;
+}
+
+.personalScrolls {
+    position: relative;
+    width: 30%;
+    height: 90%;
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    border-radius: 25px;
+    text-align: center;
+}
+
+.pScrollHeader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.personalScrolls span {
+    font-size: 1.5rem;
+}
+
+.formAndSpan {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 7%;
+}
+
+.formAndSpan span {
+    font-size: 1rem;
+}
+
+.pScrollSelection {
+    display: flex;
+    width: 50%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tableContainer {
+    position: absolute;
+    width: 100%;
+    height: 70%;
+    overflow-y: auto;
+}
+
+.tableContainer table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.THeadDB {
+    background-color: #0069D2;
+    color: white;
+}
+
+.THsmall {
+    width: 20%;
+    padding: 0;
+}
+.THlarge {
+    width: 40%;
+}
+
+.tdGeneral {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 7px 7px;
+}
+.hrLine {
+    border: 2px solid black;
+    width: 90%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.tableBtn {
+    position: relative;
+    border: 2px solid #0069D2;
+    background-color: white;
+    border-radius: 10px;
+    width: 80%;
+    height: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    top:0;
+    cursor: pointer;
+}
+
+.tableBtn:hover {
+    background-color: #0069D2;
+    color: white;
+    transition-duration: .2s;
+}
+
+.delBtn {
+    border: 2px solid red;
+}
+
+.delBtn:hover {
+    background-color: red;
+    color: white;
+    transition-duration: .2s;
+}
+
+.filterBtn {
+    width: 30%;
+}
+
+.scrollModal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+    font-size: 1rem;
+}
+
+.scrollModal h3 {
+    align-self: flex-start;
+    text-align: start;
+    font-size: 1.1rem;
+    margin-top: 5%;
+    margin-bottom: 3%;
+    margin-left: 5%;
+}
+
+.scrollModal p {
+    font-size: 1.1rem;
+    margin-bottom: 3%;
+    margin-left: 5%;
+}
+
+.scrollModal span {
+    margin-left: 5%;
+    font-size: 1.1rem;
+}
+
+.scrollModal button {
+    margin-top: 5%;
+}
+
+.scrollModal button {
+    align-self: flex-end;
+    width: 10%;
+    height: 10%;
+    margin-right: 10%;
+    border: 1px solid black;
+    background-color: red;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.scrollModal h3 {
+    position: relative;
+    width: 80%
+}
