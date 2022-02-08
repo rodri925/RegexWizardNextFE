@@ -1,22 +1,13 @@
 /* eslint-disable no-useless-concat */
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import styles from '../styles/Training.module.css';
 
-const Lessons = () => {
+const WorkspaceLayout = ({ initialtext, paragraphs, title }) => {
   const [regex, setRegex] = useState('');
-  const constantText = '    Lorem Ipsum is simply dummy text of the printing \n'
-  + 'and typesetting industry. Lorem Ipsum has been the \n'
-  + 'industry\'s standard dummy text ever since the 1500s, \n'
-  + 'when an unknown printer took a galley of type and \n'
-  + 'scrambled it to make a type specimen book. It has \n'
-  + 'survived not only five centuries, but also the \n'
-  + 'leap into electronic typesetting, remaining \n'
-  + 'essentially unchanged. It was popularised in the \n'
-  + '1960s with the release of Letraset sheets \n'
-  + 'containing Lorem Ipsum passages, and more \n'
-  + 'recently with desktop publishing \n'
-  + 'software like Aldus PageMaker including versions \n'
-  + 'of Lorem Ipsum.';
+  const constantText = initialtext.toString();
+  console.log(initialtext);
+  console.log(constantText);
 
   const missions = [{
     title: 'Welcome to Regex Training',
@@ -79,7 +70,6 @@ const Lessons = () => {
     completed: false,
   },
   ];
-
   const [indexOfFwdSlashes, setIndexOfFwdSlashes] = useState([]);
   const [filteredText, setFilteredText] = useState(constantText);
   /* keep an index of all of the forward slashes, so that the string
@@ -92,7 +82,6 @@ const Lessons = () => {
       }
     }
     setIndexOfFwdSlashes(indexPlaceholder);
-    console.log(indexPlaceholder);
   }, [regex]);
   /* If the regex is in the correct format, parse the paragraph */
   const filterPara = () => {
@@ -107,8 +96,6 @@ const Lessons = () => {
       } else {
         regexFlags = regex.slice(indexOfFwdSlashes[indexOfFwdSlashes.length - 1] + 1);
       }
-      console.log(`No flags: ${regexNoFlags}`);
-      console.log(`Flags: ${regexFlags}`);
       let typedRegex = '';
       typedRegex = new RegExp(regexNoFlags, regexFlags);
       const newTextArray = constantText.match(typedRegex);
@@ -175,34 +162,10 @@ const Lessons = () => {
       </div>
       <div className={styles.innerWrapper}>
         <div className={styles.textBox}>
-          <h1>Lesson 0: Welcome to Regex Wizard Training!</h1>
-          <p>
-          &nbsp;&nbsp;&nbsp;&nbsp;Hey there! In this short course, you will be learning
-            the basics of regular expressions. The goal by the end of the course is not
-            to be an expert
-            in regular expressions, but rather to feel confident enough to apply
-            them in the text editor of your choosing. Before we get started,
-            lets make sure you&apos;re familiar
-            with the environment you&apos;ll be working in.
-          </p>
-          <p>
-          &nbsp;&nbsp;&nbsp;&nbsp;To the left we have the lessons table.
-            From here you can navigate to
-            any lesson in the course. By selecting the dropdown menu, you can
-            reference the cheatsheet. I recommend looking at it often! Underneath this text,
-            you will see two light blue boxes filled with text. The left box holds the
-            initial text before modification by your regex, and the right box holds the text
-            after you have parsed it. At the bottom of the page there is an input box where you can
-            enter your regex. Use the format
-            {' '}
-            <strong>/(regex here)/(flags here)</strong>
-            .
-            First format the regex, and then apply the flags.
-            Press the reset button to reset your regex and the right side text box.
-            Press the submit button when you are confident in your answer. That
-            about sums is up! When you&apos;re ready, click the &apos;next lesson&apos;
-            button to get started!
-          </p>
+          <h1>{title}</h1>
+          {paragraphs.map((para) => (
+            <p>{para}</p>
+          ))}
           <div className={styles.textBoxes}>
             <div className={styles.textBoxForRegex}>
               <p>
@@ -227,4 +190,10 @@ const Lessons = () => {
   );
 };
 
-export default Lessons;
+WorkspaceLayout.propTypes = {
+  title: PropTypes.string.isRequired,
+  paragraphs: PropTypes.arrayOf(PropTypes.string).isRequired,
+  initialtext: PropTypes.PropTypes.string.isRequired,
+};
+
+export default WorkspaceLayout;

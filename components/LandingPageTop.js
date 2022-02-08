@@ -17,7 +17,7 @@ const LandingPage = () => {
 
   const [count, setCount] = useState(0);
 
-  const regexStrings = ['butter', 'b[uaie]tter', 'b...er', '[Bb][ui]t'];
+  const regexStrings = ['butter', 'b[uaie]tter', 'b...er', '\\b[Bb][ui]t\\b'];
 
   const manipulatePara = (regex) => {
     if (count >= 4) {

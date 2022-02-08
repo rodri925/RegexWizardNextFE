@@ -1,28 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Roboto:wght@400;700&display=swap');
 .outerWrapper {
     width: 100vw;
     height: 90vh;
     display: flex;
     flex-direction: row;
+    font-family: 'Roboto', sans-serif;
 }
 
 .tableBox {
     width: 25%;
     height: 100%;
     background-color: #0069D2;
-    box-sizing: border-box;
-    overflow-y: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .innerWrapper {
     width: 75%;
     height: 100%;
     display: flex;
     flex-direction: column;
+    line-height: 2;
 }
 
 .textBox {
@@ -65,6 +65,10 @@
     background-color: #00B5FF;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
 }
 
 .tableWrapper {
@@ -73,10 +77,20 @@
     background-color: #d9e7ff;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
 }
 
 .selectWrapper select {
-    margin: auto;
+    height: 50%;
+    width: 50%;
+    margin-bottom: 5%;
+    border: none;
+    background-color: #d9e7ff;
+}
+
+.selectWrapper select:hover {
+    filter: brightness(90%);
 }
 
 .textBoxes {
@@ -86,6 +100,7 @@
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
+    margin-bottom: 5%;
 }
 
 .textBoxForRegex {
@@ -134,5 +149,31 @@
     height: 40%;
     width: 40%;
     margin-left: 10%;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+}
+
+.missionTable {
+    width: 100%;
+    text-align: center;
+    font-size: 1.1rem;
+    border-collapse: collapse;
+}
+
+.missionTable tbody tr {
+    width: 100%;
+    background-color: #d9e7ff;
+}
+
+.missionTable tbody tr td {
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.missionTable thead tr th {
+    padding-bottom: 10px;
+}
+
+.missionTable tbody tr:hover {
+    filter: brightness(90%);
+    cursor: pointer;
 }
