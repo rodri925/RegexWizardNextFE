@@ -2,12 +2,14 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from '../styles/Training.module.css';
+import Notification from './Notification';
+import ParaGenerator from './ParaGenerator';
 
-const WorkspaceLayout = ({ initialtext, paragraphs, title }) => {
+const WorkspaceLayout = ({
+  initialtext, paragraphs, title, solution, solutionArray, initialTextArray,
+}) => {
   const [regex, setRegex] = useState('');
-  const constantText = initialtext.toString();
-  console.log(initialtext);
-  console.log(constantText);
+  const textType = initialTextArray.length > 0 ? initialTextArray : initialtext;
 
   const missions = [{
     title: 'Welcome to Regex Training',
@@ -71,7 +73,10 @@ const WorkspaceLayout = ({ initialtext, paragraphs, title }) => {
   },
   ];
   const [indexOfFwdSlashes, setIndexOfFwdSlashes] = useState([]);
-  const [filteredText, setFilteredText] = useState(constantText);
+  const [filteredText, setFilteredText] = useState(textType);
+
+  console.log(filteredText);
+  console.log(solution);
   /* keep an index of all of the forward slashes, so that the string
   is only split by the first and last slashes */
   useEffect(() => {
@@ -98,23 +103,29 @@ const WorkspaceLayout = ({ initialtext, paragraphs, title }) => {
       }
       let typedRegex = '';
       typedRegex = new RegExp(regexNoFlags, regexFlags);
-      const newTextArray = constantText.match(typedRegex);
-      let newTextString = '';
-      if (!newTextArray || newTextArray.length === 0) {
-        setFilteredText('');
-        return;
+      if (initialTextArray.length === 0) {
+        const newTextArray = initialtext.match(typedRegex);
+        let newTextString = '';
+        if (!newTextArray || newTextArray.length === 0) {
+          setFilteredText('');
+          return;
+        }
+        for (let i = 0; i < newTextArray.length; i += 1) {
+          newTextString = `${newTextString}${newTextArray[i]} `;
+        }
+        setFilteredText(newTextString.trim());
+      } else {
+        const newTextArr = textType.filter((word) => typedRegex.test(word));
+        console.log(newTextArr);
+        setFilteredText(newTextArr);
       }
-      for (let i = 0; i < newTextArray.length; i += 1) {
-        newTextString = `${newTextString}${newTextArray[i]}` + '\n';
-      }
-      setFilteredText(newTextString);
     } catch (error) { console.log(error); }
   };
 
   const resetText = (event) => {
     event.preventDefault();
     setRegex('');
-    setFilteredText(constantText);
+    setFilteredText(textType);
   };
 
   const missionRedirect = (event, id) => {
@@ -125,6 +136,23 @@ const WorkspaceLayout = ({ initialtext, paragraphs, title }) => {
       window.location.href = `http://localhost:3000/training/${id}`;
     }
   };
+
+  /* Solution checker for arrays */
+  const matchingSolutions = () => {
+    if (initialTextArray.length > 0) {
+      if (solutionArray.length !== filteredText.length) {
+        return false;
+      }
+      for (let i = 0; i < filteredText.length; i += 1) {
+        if (!solutionArray.includes(filteredText[i])) {
+          return false;
+        }
+      }
+      return true;
+    }
+    return false;
+  };
+
   /* filter the paragraph every time the regex input changes */
   useEffect(() => {
     filterPara();
@@ -168,16 +196,17 @@ const WorkspaceLayout = ({ initialtext, paragraphs, title }) => {
           ))}
           <div className={styles.textBoxes}>
             <div className={styles.textBoxForRegex}>
-              <p>
-                {constantText}
-              </p>
+              {initialTextArray.length > 0 && <ParaGenerator array={initialTextArray} />}
+              {initialTextArray.length === 0 && <p>{initialtext}</p>}
             </div>
             <div className={styles.textBoxForRegex}>
-              <p dangerouslySetInnerHTML={{ __html: filteredText }} />
+              {initialTextArray.length > 0 && <ParaGenerator array={filteredText} />}
+              {initialTextArray.length === 0 && <p>{filteredText}</p>}
             </div>
           </div>
         </div>
         <div className={styles.inputWrapper}>
+          {(solution === filteredText || matchingSolutions()) && <Notification type="correct" />}
           <input type="text" className={styles.inputBox} value={regex} onChange={(e) => setRegex(e.target.value)} />
           <div className={styles.buttonWrapper}>
             <button type="submit" className={styles.inputBtn}>Submit</button>
@@ -193,7 +222,10 @@ const WorkspaceLayout = ({ initialtext, paragraphs, title }) => {
 WorkspaceLayout.propTypes = {
   title: PropTypes.string.isRequired,
   paragraphs: PropTypes.arrayOf(PropTypes.string).isRequired,
-  initialtext: PropTypes.PropTypes.string.isRequired,
+  initialtext: PropTypes.string.isRequired,
+  solution: PropTypes.string.isRequired,
+  solutionArray: PropTypes.arrayOf(PropTypes.string).isRequired,
+  initialTextArray: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default WorkspaceLayout;
