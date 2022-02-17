@@ -11,7 +11,7 @@ const WorkspaceLayout = ({
   const [regex, setRegex] = useState('');
   const textType = initialTextArray.length > 0 ? initialTextArray : initialtext;
 
-  const missions = [{
+  const [missions, setMissions] = useState([{
     title: 'Welcome to Regex Training',
     id: 0,
     completed: true,
@@ -27,53 +27,55 @@ const WorkspaceLayout = ({
     completed: false,
   },
   {
-    title: 'Wildcards, Whitespaces, and the Escape Character',
+    title: 'Anchors',
     id: 3,
+    completed: false,
+  },
+  {
+    title: 'Wildcards, Whitespaces, and the Escape Character',
+    id: 4,
     completed: true,
   },
   {
     title: 'Ranges',
-    id: 4,
-    completed: false,
-  },
-  {
-    title: 'Shorthand Character Classes',
     id: 5,
     completed: false,
   },
   {
-    title: 'Groupings and Word Boundaries',
+    title: 'Shorthand Character Classes',
     id: 6,
     completed: false,
   },
   {
-    title: 'Quantifiers',
+    title: 'Groupings and Word Boundaries',
     id: 7,
     completed: false,
   },
   {
-    title: 'Optional Quantifiers',
+    title: 'Quantifiers',
     id: 8,
     completed: false,
   },
   {
-    title: 'Kleene Stars and Kleene Pluses',
+    title: 'Optional Quantifiers',
     id: 9,
-    completed: true,
+    completed: false,
   },
   {
-    title: 'Anchors',
+    title: 'Kleene Stars and Kleene Pluses',
     id: 10,
-    completed: false,
+    completed: true,
   },
   {
     title: 'Moving Forward',
     id: 11,
     completed: false,
   },
-  ];
+  ]);
   const [indexOfFwdSlashes, setIndexOfFwdSlashes] = useState([]);
   const [filteredText, setFilteredText] = useState(textType);
+  const [href, setHref] = useState('');
+  const [showNotif, setShowNotif] = useState(false);
 
   console.log(filteredText);
   console.log(solution);
@@ -88,6 +90,12 @@ const WorkspaceLayout = ({
     }
     setIndexOfFwdSlashes(indexPlaceholder);
   }, [regex]);
+
+  useEffect(() => {
+    if (window) {
+      setHref(window.location.href);
+    }
+  }, []);
   /* If the regex is in the correct format, parse the paragraph */
   const filterPara = () => {
     if (indexOfFwdSlashes[0] !== 0 || indexOfFwdSlashes.length < 2) {
@@ -127,11 +135,21 @@ const WorkspaceLayout = ({
     setRegex('');
     setFilteredText(textType);
   };
-
+  /* get lesson id from url params */
+  const getUrlID = () => {
+    if (href.length > 0) {
+      const urlArray = href.match(/training\/[0-9]+/);
+      const id = urlArray[0].slice(9);
+      console.log(id);
+      return Number(id);
+    }
+    return null;
+  };
+  /* Redirect within mission table */
   const missionRedirect = (event, id) => {
     event.preventDefault();
-    if (id === 0) {
-      window.location.href = 'http://localhost:3000/training';
+    if (id === 12) {
+      window.location.href = 'http://localhost:3000';
     } else {
       window.location.href = `http://localhost:3000/training/${id}`;
     }
@@ -153,9 +171,42 @@ const WorkspaceLayout = ({
     return false;
   };
 
+  const wrongSolutionNotif = () => {
+    setShowNotif(true);
+    setTimeout(() => setShowNotif(false), 5000);
+  };
+
+  const solutionSubmitter = (event) => {
+    event.preventDefault();
+    const id = getUrlID();
+    if (matchingSolutions() || solution === filteredText) {
+      const newMissions = missions.map((mission) => {
+        if (mission.id === id) {
+          const newMission = mission;
+          newMission.completed = true;
+          return newMission;
+        }
+        return mission;
+      });
+      setMissions(newMissions);
+      missionRedirect(event, id + 1);
+    } else {
+      wrongSolutionNotif();
+      console.log('u got it wrong');
+      console.log(showNotif);
+    }
+  };
+
   /* filter the paragraph every time the regex input changes */
   useEffect(() => {
     filterPara();
+  }, [regex]);
+
+  /* Close the incorrect notif if correct solution is found */
+  useEffect(() => {
+    if ((solution !== filteredText || !matchingSolutions())) {
+      setShowNotif(false);
+    }
   }, [regex]);
 
   return (
@@ -177,13 +228,31 @@ const WorkspaceLayout = ({
               </tr>
             </thead>
             <tbody>
-              {missions.map((mission) => (
-                <tr onClick={(event) => missionRedirect(event, mission.id)}>
-                  <td>{mission.id}</td>
-                  <td>{mission.title}</td>
-                  <td>{mission.completed && '✔'}</td>
-                </tr>
-              ))}
+              {missions.map((mission) => {
+                if (getUrlID() !== null) {
+                  if (mission.id === getUrlID()) {
+                    return (
+                      <tr
+                        onClick={(event) => missionRedirect(event, mission.id)}
+                        className={styles.currentTR}
+                      >
+                        <td>{mission.id}</td>
+                        <td>{mission.title}</td>
+                        <td>{mission.completed && '✔'}</td>
+                      </tr>
+                    );
+                  } if (mission.id !== getUrlID()) {
+                    return (
+                      <tr onClick={(event) => missionRedirect(event, mission.id)}>
+                        <td>{mission.id}</td>
+                        <td>{mission.title}</td>
+                        <td>{mission.completed && '✔'}</td>
+                      </tr>
+                    );
+                  }
+                }
+                return null;
+              })}
             </tbody>
           </table>
         </div>
@@ -192,7 +261,7 @@ const WorkspaceLayout = ({
         <div className={styles.textBox}>
           <h1>{title}</h1>
           {paragraphs.map((para) => (
-            <p>{para}</p>
+            <p className={styles.mainParas}>{para}</p>
           ))}
           <div className={styles.textBoxes}>
             <div className={styles.textBoxForRegex}>
@@ -205,14 +274,40 @@ const WorkspaceLayout = ({
             </div>
           </div>
         </div>
+        {(solution === filteredText || matchingSolutions())
+        && (
+          <div className={styles.correctInput}>
+            <Notification type="correct" />
+          </div>
+        )}
+        {showNotif
+        && (
+          <div className={styles.incorrectInput}>
+            <Notification type="incorrect" />
+          </div>
+        )}
         <div className={styles.inputWrapper}>
-          {(solution === filteredText || matchingSolutions()) && <Notification type="correct" />}
           <input type="text" className={styles.inputBox} value={regex} onChange={(e) => setRegex(e.target.value)} />
           <div className={styles.buttonWrapper}>
-            <button type="submit" className={styles.inputBtn}>Submit</button>
+            <button
+              type="submit"
+              className={styles.inputBtn}
+              onClick={(event) => solutionSubmitter(event)}
+            >
+              Submit
+            </button>
             <button type="submit" className={styles.inputBtn} onClick={(event) => resetText(event)}>Reset</button>
           </div>
-          <button type="submit" className={`${styles.inputBtn} ${styles.nextBtn}`}>Next Lesson</button>
+          {getUrlID() < 10
+          && (
+          <button
+            type="submit"
+            className={`${styles.inputBtn} ${styles.nextBtn}`}
+            onClick={(event) => missionRedirect(event, (getUrlID() + 1))}
+          >
+            Next Lesson
+          </button>
+          )}
         </div>
       </div>
     </div>

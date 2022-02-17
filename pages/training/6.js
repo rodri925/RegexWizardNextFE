@@ -1,30 +1,45 @@
 import React from 'react';
 import WorkspaceLayout from '../../components/WorkspaceLayout';
 
-const lessonSix = () => {
-  const title = 'Lesson 6: Groupings and Word Boundaries';
-  const paragraphs = [`Recall the second lesson you completed, involving alternators: In order to properly
-  say 'I will eat apples OR oranges' we needed to put apples and oranges within parentheses,
-  like so: 'I will eat (apples|oranges)'. The parentheses are actually the symbols for 
-  grouping, which is a way to separate, or group, parts of a regular expression. This extends
-  into the concept of capturing groups, which allow you to save, or capture, the subtrings matched
-  by the characters within the parentheses. This is more applicable within programming applications 
-  and will not be tested, but it is good to be aware of.`,
-  `Another way to match specific strings is using the concept of word boundaries, denoted with
-the character symbols '\\b'. Word boundaries check that the character on it's boundary is a valid
-word character (recall that a word character is any alphabetical letter, or digit, or underscore).
-Thus, if you want to ensure that you only match a word, and not a substring, you can wrap the word
-in word boundaries, i.e. '\\bcat\\b'. In this example, the regex would match with the word 'cat' but 
-not 'cataract'.`,
-  'Below there are several phrases. In this example, match the first three phrases.'];
-  const initialText = [`I like apples
-  I like oranges
-  I like pears
-  I like strawberries`];
+const lessonFive = () => {
+  const title = 'Lesson 6: Shorthand Character Classes';
+  const paragraphs = [`This lesson, we will be revisiting a topic we briefly introduced in lesson 3: shorthand character
+  classes. As a refresher, the '\\s' character, which matches white spaces, is one of these shorthand character classes.
+  But what is the purpose of them? In general, they provide an easy 'shorthand' for character types which are
+  often needed for matching. For example, if you wanted to match any digit from 0 to 9, you would have to use
+  bracket notation and ranges to denote [0-9]. But with the shorthand classes, you can use the shorthand for
+  digits, which is denoted as '\\d'.`,
+  `The last shorthand character is '\\w', which represents all word characters (this includes all upper
+    and lower case letters, as well as digits and the underscore). If you want to match the inverse of the
+    shorthand, you can simply use it's uppercase equivalent, namely '\\S', '\\D', and '\\W'. These match characters that
+    are NOT whitespaces, NOT digits, and NOT word characters, respectively.`,
+  `In this next exercise, find a regular expression which matches the following usernames given the following parameters:
+  1. The first two characters must be word characters.
+  2. The third character must be a digit.
+  3. The last two characters must NOT be word characters.`];
+  const initialText = '';
+
+  const solution = '';
+
+  const initialTextArray = ['RX3@!',
+    're6ex',
+    'CH4##',
+    'CH4RS',
+    '@@4%%',
+    'AA@@@'];
+
+  const solutionArray = ['RX3@!', 'CH4##'];
 
   return (
-    <WorkspaceLayout title={title} paragraphs={paragraphs} initialtext={initialText} />
+    <WorkspaceLayout
+      title={title}
+      paragraphs={paragraphs}
+      initialtext={initialText}
+      solution={solution}
+      initialTextArray={initialTextArray}
+      solutionArray={solutionArray}
+    />
   );
 };
 
-export default lessonSix;
+export default lessonFive;

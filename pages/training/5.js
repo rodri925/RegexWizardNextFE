@@ -1,33 +1,44 @@
 import React from 'react';
 import WorkspaceLayout from '../../components/WorkspaceLayout';
 
-const lessonFive = () => {
-  const title = 'Lesson 5: Shorthand Character Classes';
-  const paragraphs = [`This lesson, we will be revisiting a topic we briefly introduced in lesson 3: shorthand character
-  classes. As a refresher, the '\\s' character, which matches white spaces, is one of these shorthand character classes.
-  But what is the purpose of them? In general, they provide an easy 'shorthand' for character types which are
-  often needed for matching. For example, if you wanted to match any digit from 0 to 9, you would have to use
-  bracket notation and ranges to denote [0-9]. But with the shorthand classes, you can use the shorthand for
-  digits, which is denoted as '\\d'.`,
-  `The last shorthand character is '\\w', which represents all word characters (this includes all upper
-    and lower case letters, as well as digits and the underscore). If you want to match the inverse of the
-    shorthand, you can simply use it's uppercase equivalent, namely '\\S', '\\D', and '\\W'. These match characters that
-    are NOT whitespaces, NOT digits, and NOT word characters, respectively.`,
-  `In this next exercise, find a regular expression which matches the following usernames given the following parameters:
-  1. The first two characters must be word characters.
-  2. The third character must be a digit.
-  3. The last two characters must NOT be word characters.`];
-  const initialText = `
-  RX3@!
-  re6ex
-  CH4##
-  CH4RS
-  @@4%%
-  AA@@@`;
+const lessonFour = () => {
+  const title = 'Lesson 5: Ranges';
+  const paragraphs = [`The way we currently match a character against a collection of characters is using character sets, such as '[abc]'. But what if we wanted to match all characters from the
+  first half of the alphabet? Would we have to write all letters a through m? Luckily not, thanks to ranges! with ranges, we can simply denote [a-m] and all characters between
+  and including a and m will be matched. Ranges work for numbers as well. For example, if you wanted to match any character between a and k, or any digit between 0 and 6, you could
+  simply say [a-k0-6].`,
+  `In addition to ranges, we can improve our bracket notation even further with the caret symbol '^', which is synonymous with NOT. For example, putting a caret before the range like so
+  [^a-f] will match all characters NOT in the range a-f.`,
+  `Below is a list of three letter words. For this exercise, find a regular expression that matches the following parameters: 1. The first letter must be between the letters a and m, inclusively.
+  2. The second letter must not be a vowel (aeiou). 3. The third letter must be between the letters n and z, inclusively. Find all matches.`];
+  const initialText = '';
+
+  const solution = '';
+
+  const initialTextArray = ['cry',
+    'hat',
+    'cat',
+    'dry',
+    'pry',
+    'guy',
+    'hey',
+    'day',
+    'age',
+    'ant',
+    'art'];
+
+  const solutionArray = ['cry', 'dry', 'ant', 'art'];
 
   return (
-    <WorkspaceLayout title={title} paragraphs={paragraphs} initialtext={initialText} />
+    <WorkspaceLayout
+      title={title}
+      paragraphs={paragraphs}
+      initialtext={initialText}
+      solution={solution}
+      initialTextArray={initialTextArray}
+      solutionArray={solutionArray}
+    />
   );
 };
 
-export default lessonFive;
+export default lessonFour;

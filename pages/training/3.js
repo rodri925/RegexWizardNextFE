@@ -1,35 +1,38 @@
-/* eslint-disable no-useless-escape */
 import React from 'react';
 import WorkspaceLayout from '../../components/WorkspaceLayout';
 
-const lessonThree = () => {
-  const title = 'Lesson 3: Wildcards, Whitespaces, and the Escape Character';
-  const paragraphs = [`On occassion, you might not want to match any particular character, or type of character. You may just want to make sure there is a character at a specific index. This is
-  where the wildcard character '.' comes in. '.' Will match any given character at the index given.`,
-  `But what about regular periods? How do we match those in particular? To do this, we need to introduce another feature of regular expressions: the escape character '\\'. The escape
-character works by matching character literals to what would normally be regular expressions operators, such as '[', '|', '(', '.', and so on. So, if your regex is '\\.', it will
-not function as a wildcard, but instead as a literal period. What if we want to match a backwards slash? Escape the escape character, of course!`,
-  `Lastly, I want to introduce you to a regex operator that is part of a class of shorthand characters, which we will go over in more depth in the 5th lesson. It is the operator '\\s',
-and it is used to find whitespaces. With '\\s', '\\sball\\s' would not match ' balloon', however '\\sball' would. Try 
-implementing this for the example below.`,
-  `Below is a list of usernames. Not all of the usernames are valid, however, and it is your task today to find a regex that matches the valid usernames, given the following parameters:
-1. All username must be 7 characters long.
-2. The username must end in a period.
-3. The usernames are separated by whitespaces.
-4. The username must not contain a whitespace.`];
-  const initialText = ` p@ss12.
-  ReGeX22
-  asdfjkl;
-  password123.
-  PASSWORD=USERNAME
-  1111111111
-  111111.
-  j@v@SCRIPTES6!!
-  bibbidy$$##234.`;
+const lessonTen = () => {
+  const title = 'Lesson 3: Anchors';
+  const paragraphs = [`Several lessons ago, we learned how to match strings based on the property of being the beginning
+  or the end of a word character, using word boundaries. In this lesson we will learn how to match
+  our regex to the beginning or the end of a full string, using anchors.`,
+  `Anchors are denoted with the characters '^' and '$', indicating the beginning and the end of a string,
+  respectively. You may remember the caret symbol from character sets, where the caret indicates that
+  a matching character is NOT found within the brackets. When used outside of brackets, the caret symbol
+  takes on the meaning of being an anchor. For an example, lets take two strings: 'I like apples' and 
+  'I like apples and bananas'. If you only wanted the first string, the regex /I like apples/ would not
+  cut it. But since they are two separate strings, you can simply write /^I like apples$/ and the correct
+  string will be returned. Anchors are especially helpful when you are working with a list of strings,
+  and not one large string.`,
+  'Below is a list of strings. Find a regular expression that matches the following string: \'Star Wars\'.'];
+  const initialText = '';
+
+  const solution = '';
+
+  const initialTextArray = ['Star Wars', 'Star Wars: The Phantom Menace', 'Star Wars: Revenge of the Sith'];
+
+  const solutionArray = ['Star Wars'];
 
   return (
-    <WorkspaceLayout title={title} paragraphs={paragraphs} initialtext={initialText} />
+    <WorkspaceLayout
+      title={title}
+      paragraphs={paragraphs}
+      initialtext={initialText}
+      solution={solution}
+      initialTextArray={initialTextArray}
+      solutionArray={solutionArray}
+    />
   );
 };
 
-export default lessonThree;
+export default lessonTen;

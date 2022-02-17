@@ -1,28 +1,39 @@
 import React from 'react';
 import WorkspaceLayout from '../../components/WorkspaceLayout';
 
-const lessonEight = () => {
-  const title = 'Lesson 8: Optional Quantifiers';
-  const paragraphs = [`Beyond specifying a number or range of numbers of which a character or grouping will be repeated, quantifiers can also specify that a word may or may not contain a specific character. These
-  are called optional quantifiers, and use the '?' character. Let's return to the US vs UK english example. If we take the word 'flavor', it is spelled like so in the US. However,
-  in the UK it is spelled 'flavour'. Both are technically correct, so how do we write a regular expression that matches both efficiently? We can use an optional quantifier and write
-  /flavou?r/, indicating that the word may or may not contain a 'u'.`,
-  'Below is a list of several words with different spellings between the US and the UK. Write a regular expression which returns both countries\' versions of \'color\' and \'humour\'.'];
-  const initialText = [`humor
-  flavor
-  colour
-  labor
-  humour
-  flavour
-  neighbour
-  labour
-  neighbor
-  color
-  `];
+const lessonSeven = () => {
+  const title = 'Lesson 8: Quantifiers';
+  const paragraphs = [`Up until now, we have only been able to match characters one for one. This can get tiresome, especially when face with a string like 'hahahaha'. To match this,
+  we would need to use the full string literal. This is where quantifiers come in. With quantifiers we can identify repeating substrings and instruct the regex
+  to look for a specific number of repeats. Instead of writing /hahahaha/, we can use the quantifier characters '{ }' and write /(ha){4}/. If you want to match, say,
+  'ha' 'haha' and 'hahaha' as well, you can also incorporate a range within your quantifiers, writing /(ha){1,4}/. One thing to note is that, if not using the 'g' flag,
+  the quantifier will return the largest repeat it can find.`,
+  'Below is a list of onomatopoeias. Find a regular expression that returns all iterations of \'shh\' and \'hiss\'.'];
+  const initialText = '';
+
+  const solution = '';
+
+  const initialTextArray = ['shhhhh',
+    'haha',
+    'shh',
+    'hiss',
+    'hahaha',
+    'buzz',
+    'hissss',
+    'buzzzzz'];
+
+  const solutionArray = ['shhhhh', 'shh', 'hiss', 'hissss'];
 
   return (
-    <WorkspaceLayout title={title} paragraphs={paragraphs} initialtext={initialText} />
+    <WorkspaceLayout
+      title={title}
+      paragraphs={paragraphs}
+      initialtext={initialText}
+      solution={solution}
+      initialTextArray={initialTextArray}
+      solutionArray={solutionArray}
+    />
   );
 };
 
-export default lessonEight;
+export default lessonSeven;

@@ -6,7 +6,7 @@ const Notification = ({ type }) => {
   if (type === 'correct') {
     text = 'That is correct!';
   } else if (type === 'incorrect') {
-    text = 'That is incorrect';
+    text = 'That is incorrect.';
   }
   return <span>{text}</span>;
 };

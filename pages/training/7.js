@@ -1,27 +1,45 @@
 import React from 'react';
 import WorkspaceLayout from '../../components/WorkspaceLayout';
 
-const lessonSeven = () => {
-  const title = 'Lesson 7: Quantifiers';
-  const paragraphs = [`Up until now, we have only been able to match characters one for one. This can get tiresome, especially when face with a string like 'hahahaha'. To match this,
-  we would need to use the full string literal. This is where quantifiers come in. With quantifiers we can identify repeating substrings and instruct the regex
-  to look for a specific number of repeats. Instead of writing /hahahaha/, we can use the quantifier characters '{ }' and write /(ha){4}/. If you want to match, say,
-  'ha' 'haha' and 'hahaha' as well, you can also incorporate a range within your quantifiers, writing /(ha){1,4}/. One thing to note is that, if not using the 'g' flag,
-  the quantifier will return the largest repeat it can find.`,
-  'Below is a list of onomatopoeias. Find a regular expression that returns all iterations of \'shh\' and \'hiss\'.'];
-  const initialText = [`shhhhh
-  haha
-  shh
-  hiss
-  hahaha
-  buzz
-  hissss
-  buzzzzz
-  `];
+const lessonSix = () => {
+  const title = 'Lesson 7: Groupings and Word Boundaries';
+  const paragraphs = [`Recall the second lesson you completed, involving alternators: In order to properly
+  say 'I will eat apples OR oranges' we needed to put apples and oranges within parentheses,
+  like so: 'I will eat (apples|oranges)'. The parentheses are actually the symbols for 
+  grouping, which is a way to separate, or group, parts of a regular expression. This extends
+  into the concept of capturing groups, which allow you to save, or capture, the subtrings matched
+  by the characters within the parentheses. This is more applicable within programming applications 
+  and will not be tested, but it is good to be aware of.`,
+  `Another way to match specific strings is using the concept of word boundaries, denoted with
+the character symbols '\\b'. Word boundaries check that the character on it's boundary is a valid
+word character (recall that a word character is any alphabetical letter, or digit, or underscore).
+Thus, if you want to ensure that you only match a word, and not a substring, you can wrap the word
+in word boundaries, i.e. '\\bcat\\b'. In this example, the regex would match with the word 'cat' but 
+not 'cataract'.`,
+  'Below there are several phrases. In this example, match the first three phrases.'];
+  const initialText = '';
+
+  const solution = '';
+
+  const initialTextArray = ['I like apples',
+    'I like oranges',
+    'I like pears',
+    'I like strawberries'];
+
+  const solutionArray = ['I like apples',
+    'I like oranges',
+    'I like pears'];
 
   return (
-    <WorkspaceLayout title={title} paragraphs={paragraphs} initialtext={initialText} />
+    <WorkspaceLayout
+      title={title}
+      paragraphs={paragraphs}
+      initialtext={initialText}
+      solution={solution}
+      initialTextArray={initialTextArray}
+      solutionArray={solutionArray}
+    />
   );
 };
 
-export default lessonSeven;
+export default lessonSix;

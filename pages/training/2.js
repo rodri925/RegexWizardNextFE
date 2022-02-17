@@ -13,16 +13,24 @@ take the string 'The cat in the hat'. If you wanted to match the words 'cat' and
 either a 'c' or an 'h' using character sets, denoted as '[ch]at'.`,
   `Within the english language, there are several words that are spelled differently, depending on where you are in the world. The word 'flavor', for example, is spelled as such in the US,
 while it is spelled 'flavour' in the UK. Below are a list of similar words. For this exercise, find a regular expression that matches the words 'analyze/analyse' and 'pretence/pretense'.`];
-  const initialText = `defence defense
-  licence license
-  offence offense
-  pretence pretense
-  analyse analyze
-  breathalyse breathalyze
-  paralyse paralyze`;
+  const initialText = '';
+
+  const solution = '';
+
+  const initialTextArray = ['defence', 'defense', 'licence', 'license', 'offence', 'offense', 'pretence', 'pretense', 'analyse', 'analyze',
+    'breathalyse', 'breathalyze', 'paralyse', 'paralyze'];
+
+  const solutionArray = ['pretence', 'pretense', 'analyse', 'analyze'];
 
   return (
-    <WorkspaceLayout title={title} paragraphs={paragraphs} initialtext={initialText} />
+    <WorkspaceLayout
+      title={title}
+      paragraphs={paragraphs}
+      initialtext={initialText}
+      solution={solution}
+      initialTextArray={initialTextArray}
+      solutionArray={solutionArray}
+    />
   );
 };
 

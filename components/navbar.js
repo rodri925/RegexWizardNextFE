@@ -22,12 +22,12 @@ const Navbar = () => {
             <div className={styles.hamLine} />
           </div>
         </div>
-        <Link href="./training"><div className={styles.navLinks} style={{ display: width > 600 ? 'block' : 'none' }}>Training</div></Link>
-        <Link href="./missions"><div className={styles.navLinks} style={{ display: width > 600 ? 'block' : 'none' }}>Missions</div></Link>
+        <Link href="./training/0"><div className={styles.navLinks} style={{ display: width > 600 ? 'block' : 'none' }}>Training</div></Link>
+        <Link href="./missions/1"><div className={styles.navLinks} style={{ display: width > 600 ? 'block' : 'none' }}>Missions</div></Link>
         <Link href="./dashboard"><div className={styles.navLinks} style={{ display: width > 600 ? 'block' : 'none' }}>Dashboard</div></Link>
         <Link href="./scrolls"><div className={styles.navLinks} style={{ display: width > 600 ? 'block' : 'none' }}>Scrolls</div></Link>
-        <Link href="./training"><div className={styles.navLinksCol} style={{ display: hamToggle && width < 600 ? 'block' : 'none' }}>Training</div></Link>
-        <Link href="./missions"><div className={styles.navLinksCol} style={{ display: hamToggle && width < 600 ? 'block' : 'none' }}>Missions</div></Link>
+        <Link href="./training/0"><div className={styles.navLinksCol} style={{ display: hamToggle && width < 600 ? 'block' : 'none' }}>Training</div></Link>
+        <Link href="./missions/1"><div className={styles.navLinksCol} style={{ display: hamToggle && width < 600 ? 'block' : 'none' }}>Missions</div></Link>
         <Link href="./dashboard"><div className={styles.navLinksCol} style={{ display: hamToggle && width < 600 ? 'block' : 'none' }}>Dashboard</div></Link>
         <Link href="./scrolls"><div className={styles.navLinksCol} style={{ display: hamToggle && width < 600 ? 'block' : 'none' }}>Scrolls</div></Link>
       </nav>

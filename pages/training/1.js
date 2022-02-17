@@ -13,12 +13,25 @@ const lessonOne = () => {
    would only return the first word, 'cat'. `,
   `Now that we have our feet wet with string literals and basic flags, let's try the following exercise. Below is a tongue twister. Find a regular expression
     that matches all of the words or substrings that are 'wood', irrespective of capitalization.`];
-  const initialText = [`How much wood would a Woodchuck chuck if a woodchuck could chuck wood?
+  const initialText = `How much wood would a Woodchuck chuck if a woodchuck could chuck wood?
   He would chuck, he would, as much as he could, and chuck as much wood
-  As a woodchuck would if a Woodchuck could chuck wood`];
+  As a woodchuck would if a Woodchuck could chuck wood`;
+
+  const solution = 'wood Wood wood wood wood wood Wood wood';
+
+  const initialTextArray = [];
+
+  const solutionArray = [];
 
   return (
-    <WorkspaceLayout title={title} paragraphs={paragraphs} initialtext={initialText} />
+    <WorkspaceLayout
+      title={title}
+      paragraphs={paragraphs}
+      initialtext={initialText}
+      solution={solution}
+      initialTextArray={initialTextArray}
+      solutionArray={solutionArray}
+    />
   );
 };
 

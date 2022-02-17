@@ -62,7 +62,7 @@
 .selectWrapper {
     width: 90%;
     height: 10%;
-    background-color: #00B5FF;
+    background-color: #d9e7ff;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     display:flex;
@@ -75,8 +75,6 @@
     width: 90%;
     height: 80%;
     background-color: #d9e7ff;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
     box-sizing: border-box;
     overflow-y: auto;
 }
@@ -87,10 +85,11 @@
     margin-bottom: 5%;
     border: none;
     background-color: #d9e7ff;
+    filter: brightness(90%);
 }
 
 .selectWrapper select:hover {
-    filter: brightness(90%);
+    filter: brightness(80%);
 }
 
 .textBoxes {
@@ -110,6 +109,10 @@
     border-radius: 20px;
     box-sizing: border-box;
     overflow: auto;
+}
+
+.mainParas {
+    text-indent: 2rem;
 }
 
 .buttonWrapper {
@@ -153,7 +156,9 @@
 }
 
 .missionTable {
-    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
     text-align: center;
     font-size: 1.1rem;
     border-collapse: collapse;
@@ -176,4 +181,37 @@
 .missionTable tbody tr:hover {
     filter: brightness(90%);
     cursor: pointer;
+}
+
+.missionTable tbody .currentTR {
+    background-color:#00B5FF;
+    color: white;
+}
+
+.missionTable tbody .currentTR:hover {
+    filter: brightness(100%) !important;
+}
+
+.correctInput {
+    width: 100%;
+    height: 7%;
+    background-color: #33A532;
+    transition-duration: .2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+.incorrectInput {
+    width: 100%;
+    height: 7%;
+    background-color:  #ff000d;
+    transition-duration: .2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
 }
