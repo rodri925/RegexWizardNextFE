@@ -22,7 +22,7 @@ while it is spelled 'flavour' in the UK. Below are a list of similar words. For 
 
   const solutionArray = ['pretence', 'pretense', 'analyse', 'analyze'];
 
-  const exType = 'lessons';
+  const exType = 'Lessons';
 
   return (
     <WorkspaceLayout

@@ -25,7 +25,7 @@ const lessonEight = () => {
 
   const solutionArray = ['humor', 'colour', 'humour', 'color'];
 
-  const exType = 'lessons';
+  const exType = 'Lessons';
 
   return (
     <WorkspaceLayout

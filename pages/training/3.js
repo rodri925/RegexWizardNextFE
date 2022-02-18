@@ -23,7 +23,7 @@ const lessonTen = () => {
 
   const solutionArray = ['Star Wars'];
 
-  const exType = 'lessons';
+  const exType = 'Lessons';
 
   return (
     <WorkspaceLayout

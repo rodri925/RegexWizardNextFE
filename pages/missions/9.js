@@ -25,7 +25,7 @@ const missionNine = () => {
 
   const solutionArray = ['23-Bob Richards-Kenzington'];
 
-  const exType = 'missions';
+  const exType = 'Missions';
 
   return (
     <WorkspaceLayout

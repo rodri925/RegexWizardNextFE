@@ -30,7 +30,7 @@ not 'cataract'.`,
     'I like oranges',
     'I like pears'];
 
-  const exType = 'lessons';
+  const exType = 'Lessons';
 
   return (
     <WorkspaceLayout

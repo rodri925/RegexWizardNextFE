@@ -6,9 +6,8 @@ const missionTwo = () => {
   const paragraphs = ['Dear Regex Wizards,',
     `My name is Mr. Fortran. I am a teacher at our local school, and yesterday I asked my students to 
 provide their birth dates for the first day of class. When I took a look at the birthday list, 
-I realized that I had forgotten to give them a format!`,
-    `Could you help me find a regular expression that matches the birth dates formatted to
-my liking? Here is the format: MM/DD/YYYY`,
+I realized that I had forgotten to give them a format! Could you help me find a regular expression 
+that matches the birth dates formatted to my liking? Here is the format: MM/DD/YYYY`,
   ];
   const initialText = '';
 
@@ -25,7 +24,7 @@ my liking? Here is the format: MM/DD/YYYY`,
 
   const solutionArray = ['12/01/2005', '04/11/2002', '03/16/2003'];
 
-  const exType = 'missions';
+  const exType = 'Missions';
 
   return (
     <WorkspaceLayout

@@ -6,9 +6,8 @@ const missionFour = () => {
   const paragraphs = ['Dear Regex Wizards,',
     `Hey, it's Steve again. From the bank, remember? I have another issue. We 
     recently started to accept Visa and I have been assigned the task of finding
-    a regular expression that matches Visa cards.`,
-    `Do you think you could help me out with that? I'm sure you can find the specifications
-    somewhere online.`,
+    a regular expression that matches Visa cards. Do you think you could help me out 
+    with that? I'm sure you can find the specifications somewhere online.`,
   ];
   const initialText = '';
 
@@ -25,7 +24,7 @@ const missionFour = () => {
 
   const solutionArray = ['4084902296814164', '4534315815509'];
 
-  const exType = 'missions';
+  const exType = 'Missions';
 
   return (
     <WorkspaceLayout

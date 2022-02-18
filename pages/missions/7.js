@@ -30,7 +30,7 @@ const missionSeven = () => {
 
   const solutionArray = ['//This function takes a and turns it into b', '/* This variable is used to store b */'];
 
-  const exType = 'missions';
+  const exType = 'Missions';
 
   return (
     <WorkspaceLayout

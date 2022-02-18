@@ -30,7 +30,7 @@ const lessonFive = () => {
 
   const solutionArray = ['RX3@!', 'CH4##'];
 
-  const exType = 'lessons';
+  const exType = 'Lessons';
 
   return (
     <WorkspaceLayout

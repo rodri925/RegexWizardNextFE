@@ -33,7 +33,7 @@ implementing this for the example below.`,
 
   const solutionArray = ['p@ss12.', '111111.'];
 
-  const exType = 'lessons';
+  const exType = 'Lessons';
 
   return (
     <WorkspaceLayout

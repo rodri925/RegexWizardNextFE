@@ -29,7 +29,7 @@ const lessonNine = () => {
 
   const solutionArray = ['vroom', 'vrooooom', 'kaboom', 'kaboooooom', 'vroooooooooooom'];
 
-  const exType = 'lessons';
+  const exType = 'Lessons';
 
   return (
     <WorkspaceLayout

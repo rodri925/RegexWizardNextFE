@@ -128,6 +128,7 @@ const WorkspaceLayout = ({
   const [filteredText, setFilteredText] = useState(textType);
   const [href, setHref] = useState('');
   const [showNotif, setShowNotif] = useState(false);
+  const [dropSelected, setDropSelected] = useState(exerciseType);
 
   console.log(filteredText);
   console.log(solution);
@@ -191,7 +192,7 @@ const WorkspaceLayout = ({
   const getUrlID = () => {
     if (href.length > 0) {
       let urlArray = '';
-      if (exerciseType === 'lessons') {
+      if (exerciseType === 'Lessons') {
         urlArray = href.match(/training\/[0-9]+/);
       } else {
         urlArray = href.match(/missions\/[0-9]+/);
@@ -205,14 +206,14 @@ const WorkspaceLayout = ({
   /* Redirect within mission table */
   const missionRedirect = (event, id) => {
     event.preventDefault();
-    if (exerciseType === 'lessons') {
+    if (exerciseType === 'Lessons') {
       if (id === 12) {
         window.location.href = 'http://localhost:3000';
       } else {
         window.location.href = `http://localhost:3000/training/${id}`;
       }
     }
-    if (exerciseType === 'missions') {
+    if (exerciseType === 'Missions') {
       if (id === 11) {
         window.location.href = 'http://localhost:3000';
       } else {
@@ -246,7 +247,7 @@ const WorkspaceLayout = ({
     event.preventDefault();
     const id = getUrlID();
     if (matchingSolutions() || solution === filteredText) {
-      if (exerciseType === 'lessons') {
+      if (exerciseType === 'Lessons') {
         const newMissions = missions.map((mission) => {
           if (mission.id === id) {
             const newMission = mission;
@@ -292,12 +293,13 @@ const WorkspaceLayout = ({
     <div className={styles.outerWrapper}>
       <div className={styles.tableBox}>
         <div className={styles.selectWrapper}>
-          <select>
-            <option value="lessons">{exerciseType}</option>
-            <option value="cheatsheet">Cheatsheet</option>
+          <select onChange={(event) => setDropSelected(event.target.value)}>
+            <option value={exerciseType}>{exerciseType}</option>
+            <option value="Cheatsheet">Cheatsheet</option>
           </select>
         </div>
         <div className={styles.tableWrapper}>
+          {dropSelected === exerciseType && (
           <table className={styles.missionTable}>
             <thead>
               <tr>
@@ -307,7 +309,7 @@ const WorkspaceLayout = ({
               </tr>
             </thead>
             <tbody>
-              {exerciseType === 'lessons' && missions.map((mission) => {
+              {exerciseType === 'Lessons' && missions.map((mission) => {
                 if (getUrlID() !== null) {
                   if (mission.id === getUrlID()) {
                     return (
@@ -332,7 +334,7 @@ const WorkspaceLayout = ({
                 }
                 return null;
               })}
-              {exerciseType === 'missions' && realMissions.map((mission) => {
+              {exerciseType === 'Missions' && realMissions.map((mission) => {
                 if (getUrlID() !== null) {
                   if (mission.id === getUrlID()) {
                     return (
@@ -359,6 +361,105 @@ const WorkspaceLayout = ({
               })}
             </tbody>
           </table>
+          )}
+          {dropSelected === 'Cheatsheet' && (
+            <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Flags</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>i</td>
+                    <td>Ignore capitalization</td>
+                  </tr>
+                  <tr>
+                    <td>g</td>
+                    <td>Find all matches in the string</td>
+                  </tr>
+                </tbody>
+              </table>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Symbols</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>abc</td>
+                    <td>String Literal: matches abc</td>
+                  </tr>
+                  <tr>
+                    <td>a|b</td>
+                    <td>Matches a or b</td>
+                  </tr>
+                  <tr>
+                    <td>[abc]</td>
+                    <td>Matches an a, b, or c</td>
+                  </tr>
+                  <tr>
+                    <td>^,$</td>
+                    <td>Matches the beginning/end of a string, respectively</td>
+                  </tr>
+                  <tr>
+                    <td>.</td>
+                    <td>Matches any character</td>
+                  </tr>
+                  <tr>
+                    <td>\</td>
+                    <td>Escapes the character in front of it</td>
+                  </tr>
+                  <tr>
+                    <td>a-z</td>
+                    <td>Matches characters from a to z</td>
+                  </tr>
+                  <tr>
+                    <td>^a</td>
+                    <td>Within brackets, matches all but a</td>
+                  </tr>
+                  <tr>
+                    <td>\s</td>
+                    <td>Matches white spaces (opposite if capital)</td>
+                  </tr>
+                  <tr>
+                    <td>\d</td>
+                    <td>Matches digits</td>
+                  </tr>
+                  <tr>
+                    <td>\w</td>
+                    <td>Matches word characters</td>
+                  </tr>
+                  <tr>
+                    <td>(abc)</td>
+                    <td>Identifies the letters abc as one grouping</td>
+                  </tr>
+                  <tr>
+                    <td>\b</td>
+                    <td>Matches word boundaries</td>
+                  </tr>
+                  <tr>
+                    <td>{'a{1,4}'}</td>
+                    <td>Matches 1 to 4 repeats of a</td>
+                  </tr>
+                  <tr>
+                    <td>a?</td>
+                    <td>Match may or may not contain a</td>
+                  </tr>
+                  <tr>
+                    <td>a*</td>
+                    <td>Matches 0 or more a&apos;s</td>
+                  </tr>
+                  <tr>
+                    <td>+</td>
+                    <td>Matches 1 or more a&apos;s</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          )}
         </div>
       </div>
       <div className={styles.innerWrapper}>
@@ -402,7 +503,7 @@ const WorkspaceLayout = ({
             </button>
             <button type="submit" className={styles.inputBtn} onClick={(event) => resetText(event)}>Reset</button>
           </div>
-          {(((getUrlID() < 11) && (exerciseType === 'lessons')) || ((getUrlID() < 10) && (exerciseType === 'missions')))
+          {(((getUrlID() < 11) && (exerciseType === 'Lessons')) || ((getUrlID() < 10) && (exerciseType === 'Missions')))
           && (
           <button
             type="submit"

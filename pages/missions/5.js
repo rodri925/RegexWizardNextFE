@@ -7,9 +7,8 @@ const missionFive = () => {
     `My name is Alan. I run a blog that promotes pet products to my subscribers. The problem is,
     not all of my subscribers give me valid email addresses! The format isn't too difficult; an
     email address can be any character except for an '@' symbol, followed by an '@' symbol, and 
-    lastly either 'yahoo.com' or 'gmail.com' as the domain. `,
-    `Can you help me find a regular expression that filters email addresses based on my requirements?
-    `,
+    lastly either 'yahoo.com' or 'gmail.com' as the domain. Can you help me find a regular expression
+     that filters email addresses based on my requirements?`,
   ];
   const initialText = '';
 
@@ -26,7 +25,7 @@ const missionFive = () => {
 
   const solutionArray = ['petlover2@gmail.com', 'lovemydoggies!@yahoo.com', '##$$%%@gmail.com'];
 
-  const exType = 'missions';
+  const exType = 'Missions';
 
   return (
     <WorkspaceLayout
