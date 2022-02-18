@@ -26,6 +26,8 @@ const missionFive = () => {
 
   const solutionArray = ['petlover2@gmail.com', 'lovemydoggies!@yahoo.com', '##$$%%@gmail.com'];
 
+  const exType = 'missions';
+
   return (
     <WorkspaceLayout
       title={title}
@@ -34,6 +36,7 @@ const missionFive = () => {
       solution={solution}
       initialTextArray={initialTextArray}
       solutionArray={solutionArray}
+      exerciseType={exType}
     />
   );
 };

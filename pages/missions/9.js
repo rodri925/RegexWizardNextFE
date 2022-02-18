@@ -25,6 +25,8 @@ const missionNine = () => {
 
   const solutionArray = ['23-Bob Richards-Kenzington'];
 
+  const exType = 'missions';
+
   return (
     <WorkspaceLayout
       title={title}
@@ -33,6 +35,7 @@ const missionNine = () => {
       solution={solution}
       initialTextArray={initialTextArray}
       solutionArray={solutionArray}
+      exerciseType={exType}
     />
   );
 };

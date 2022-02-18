@@ -22,6 +22,8 @@ while it is spelled 'flavour' in the UK. Below are a list of similar words. For 
 
   const solutionArray = ['pretence', 'pretense', 'analyse', 'analyze'];
 
+  const exType = 'lessons';
+
   return (
     <WorkspaceLayout
       title={title}
@@ -30,6 +32,7 @@ while it is spelled 'flavour' in the UK. Below are a list of similar words. For 
       solution={solution}
       initialTextArray={initialTextArray}
       solutionArray={solutionArray}
+      exerciseType={exType}
     />
   );
 };

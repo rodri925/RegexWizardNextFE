@@ -28,6 +28,8 @@ const missionThree = () => {
 
   const solutionArray = ['password123', '##TheyllNeverGuess!!'];
 
+  const exType = 'missions';
+
   return (
     <WorkspaceLayout
       title={title}
@@ -36,6 +38,7 @@ const missionThree = () => {
       solution={solution}
       initialTextArray={initialTextArray}
       solutionArray={solutionArray}
+      exerciseType={exType}
     />
   );
 };

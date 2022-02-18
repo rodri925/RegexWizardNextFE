@@ -15,6 +15,8 @@ const lessonEleven = () => {
 
   const solutionArray = [];
 
+  const exType = 'lessons';
+
   return (
     <WorkspaceLayout
       title={title}
@@ -23,6 +25,7 @@ const lessonEleven = () => {
       solution={solution}
       initialTextArray={initialTextArray}
       solutionArray={solutionArray}
+      exerciseType={exType}
     />
   );
 };

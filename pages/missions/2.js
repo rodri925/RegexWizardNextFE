@@ -25,6 +25,8 @@ my liking? Here is the format: MM/DD/YYYY`,
 
   const solutionArray = ['12/01/2005', '04/11/2002', '03/16/2003'];
 
+  const exType = 'missions';
+
   return (
     <WorkspaceLayout
       title={title}
@@ -33,6 +35,7 @@ my liking? Here is the format: MM/DD/YYYY`,
       solution={solution}
       initialTextArray={initialTextArray}
       solutionArray={solutionArray}
+      exerciseType={exType}
     />
   );
 };

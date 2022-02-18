@@ -29,6 +29,8 @@ const lessonFour = () => {
 
   const solutionArray = ['cry', 'dry', 'ant', 'art'];
 
+  const exType = 'lessons';
+
   return (
     <WorkspaceLayout
       title={title}
@@ -37,6 +39,7 @@ const lessonFour = () => {
       solution={solution}
       initialTextArray={initialTextArray}
       solutionArray={solutionArray}
+      exerciseType={exType}
     />
   );
 };

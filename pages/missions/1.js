@@ -12,7 +12,7 @@ a web page where potential customers can enter there phone numbers. I've collect
 but there's a problem; not everyone enters in their zipcode, not everyone encloses their zipcode
 in parentheses, and some jokesters just enter in a bunch of random stuff!`,
   `Can you help me find a regular expression that filters out all of the junk? Here is how
-I want my phone numbers formatted: (XXX)-(XXX)-(XXXX)`,
+I want my phone numbers formatted: (XXX)-XXX-XXXX`,
   'All the best,',
   'Ms. Perl',
   ];
@@ -37,6 +37,8 @@ I want my phone numbers formatted: (XXX)-(XXX)-(XXXX)`,
     '(361)-897-1003',
     '(646)-588-4970'];
 
+  const exType = 'missions';
+
   return (
     <WorkspaceLayout
       title={title}
@@ -45,6 +47,7 @@ I want my phone numbers formatted: (XXX)-(XXX)-(XXXX)`,
       solution={solution}
       initialTextArray={initialTextArray}
       solutionArray={solutionArray}
+      exerciseType={exType}
     />
   );
 };

@@ -6,11 +6,11 @@ import Notification from './Notification';
 import ParaGenerator from './ParaGenerator';
 
 const WorkspaceLayout = ({
-  initialtext, paragraphs, title, solution, solutionArray, initialTextArray,
+  initialtext, paragraphs, title, solution, solutionArray, initialTextArray, exerciseType,
 }) => {
   const [regex, setRegex] = useState('');
   const textType = initialTextArray.length > 0 ? initialTextArray : initialtext;
-
+  /* Missions are lessons, RealMissions are actual missions, will change */
   const [missions, setMissions] = useState([{
     title: 'Welcome to Regex Training',
     id: 0,
@@ -69,6 +69,58 @@ const WorkspaceLayout = ({
   {
     title: 'Moving Forward',
     id: 11,
+    completed: false,
+  },
+  ]);
+
+  const [realMissions, setRealMissions] = useState([{
+    title: 'Ms. Perl\'s Cupcakes',
+    id: 1,
+    completed: true,
+  },
+  {
+    title: 'Mr. Fortran\'s Classroom',
+    id: 2,
+    completed: false,
+  },
+  {
+    title: 'Steve\'s Bank',
+    id: 3,
+    completed: false,
+  },
+  {
+    title: 'Steve\'s Bank: Part 2',
+    id: 4,
+    completed: false,
+  },
+  {
+    title: 'Alan\'s Blog',
+    id: 5,
+    completed: true,
+  },
+  {
+    title: 'Mr. McKinnen vs H4X0R5',
+    id: 6,
+    completed: false,
+  },
+  {
+    title: 'Marks\'s Project Write Up',
+    id: 7,
+    completed: false,
+  },
+  {
+    title: 'Mark\'s Project: Part 2',
+    id: 8,
+    completed: false,
+  },
+  {
+    title: 'Barbara\'s Database',
+    id: 9,
+    completed: false,
+  },
+  {
+    title: 'Woz\'s IP\'s',
+    id: 10,
     completed: false,
   },
   ]);
@@ -138,7 +190,12 @@ const WorkspaceLayout = ({
   /* get lesson id from url params */
   const getUrlID = () => {
     if (href.length > 0) {
-      const urlArray = href.match(/training\/[0-9]+/);
+      let urlArray = '';
+      if (exerciseType === 'lessons') {
+        urlArray = href.match(/training\/[0-9]+/);
+      } else {
+        urlArray = href.match(/missions\/[0-9]+/);
+      }
       const id = urlArray[0].slice(9);
       console.log(id);
       return Number(id);
@@ -148,10 +205,19 @@ const WorkspaceLayout = ({
   /* Redirect within mission table */
   const missionRedirect = (event, id) => {
     event.preventDefault();
-    if (id === 12) {
-      window.location.href = 'http://localhost:3000';
-    } else {
-      window.location.href = `http://localhost:3000/training/${id}`;
+    if (exerciseType === 'lessons') {
+      if (id === 12) {
+        window.location.href = 'http://localhost:3000';
+      } else {
+        window.location.href = `http://localhost:3000/training/${id}`;
+      }
+    }
+    if (exerciseType === 'missions') {
+      if (id === 11) {
+        window.location.href = 'http://localhost:3000';
+      } else {
+        window.location.href = `http://localhost:3000/missions/${id}`;
+      }
     }
   };
 
@@ -180,16 +246,29 @@ const WorkspaceLayout = ({
     event.preventDefault();
     const id = getUrlID();
     if (matchingSolutions() || solution === filteredText) {
-      const newMissions = missions.map((mission) => {
-        if (mission.id === id) {
-          const newMission = mission;
-          newMission.completed = true;
-          return newMission;
-        }
-        return mission;
-      });
-      setMissions(newMissions);
-      missionRedirect(event, id + 1);
+      if (exerciseType === 'lessons') {
+        const newMissions = missions.map((mission) => {
+          if (mission.id === id) {
+            const newMission = mission;
+            newMission.completed = true;
+            return newMission;
+          }
+          return mission;
+        });
+        setMissions(newMissions);
+        missionRedirect(event, id + 1);
+      } else {
+        const newMissions = realMissions.map((mission) => {
+          if (mission.id === id) {
+            const newMission = mission;
+            newMission.completed = true;
+            return newMission;
+          }
+          return mission;
+        });
+        setRealMissions(newMissions);
+        missionRedirect(event, id + 1);
+      }
     } else {
       wrongSolutionNotif();
       console.log('u got it wrong');
@@ -214,7 +293,7 @@ const WorkspaceLayout = ({
       <div className={styles.tableBox}>
         <div className={styles.selectWrapper}>
           <select>
-            <option value="lessons">Lessons</option>
+            <option value="lessons">{exerciseType}</option>
             <option value="cheatsheet">Cheatsheet</option>
           </select>
         </div>
@@ -223,12 +302,37 @@ const WorkspaceLayout = ({
             <thead>
               <tr>
                 <th>#</th>
-                <th>Lesson</th>
+                <th>{exerciseType}</th>
                 <th>Completed</th>
               </tr>
             </thead>
             <tbody>
-              {missions.map((mission) => {
+              {exerciseType === 'lessons' && missions.map((mission) => {
+                if (getUrlID() !== null) {
+                  if (mission.id === getUrlID()) {
+                    return (
+                      <tr
+                        onClick={(event) => missionRedirect(event, mission.id)}
+                        className={styles.currentTR}
+                      >
+                        <td>{mission.id}</td>
+                        <td>{mission.title}</td>
+                        <td>{mission.completed && '✔'}</td>
+                      </tr>
+                    );
+                  } if (mission.id !== getUrlID()) {
+                    return (
+                      <tr onClick={(event) => missionRedirect(event, mission.id)}>
+                        <td>{mission.id}</td>
+                        <td>{mission.title}</td>
+                        <td>{mission.completed && '✔'}</td>
+                      </tr>
+                    );
+                  }
+                }
+                return null;
+              })}
+              {exerciseType === 'missions' && realMissions.map((mission) => {
                 if (getUrlID() !== null) {
                   if (mission.id === getUrlID()) {
                     return (
@@ -298,7 +402,7 @@ const WorkspaceLayout = ({
             </button>
             <button type="submit" className={styles.inputBtn} onClick={(event) => resetText(event)}>Reset</button>
           </div>
-          {getUrlID() < 10
+          {(((getUrlID() < 11) && (exerciseType === 'lessons')) || ((getUrlID() < 10) && (exerciseType === 'missions')))
           && (
           <button
             type="submit"
@@ -321,6 +425,7 @@ WorkspaceLayout.propTypes = {
   solution: PropTypes.string.isRequired,
   solutionArray: PropTypes.arrayOf(PropTypes.string).isRequired,
   initialTextArray: PropTypes.arrayOf(PropTypes.string).isRequired,
+  exerciseType: PropTypes.string.isRequired,
 };
 
 export default WorkspaceLayout;

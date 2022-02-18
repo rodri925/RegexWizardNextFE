@@ -33,6 +33,8 @@ implementing this for the example below.`,
 
   const solutionArray = ['p@ss12.', '111111.'];
 
+  const exType = 'lessons';
+
   return (
     <WorkspaceLayout
       title={title}
@@ -41,6 +43,7 @@ implementing this for the example below.`,
       solution={solution}
       initialTextArray={initialTextArray}
       solutionArray={solutionArray}
+      exerciseType={exType}
     />
   );
 };

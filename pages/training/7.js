@@ -30,6 +30,8 @@ not 'cataract'.`,
     'I like oranges',
     'I like pears'];
 
+  const exType = 'lessons';
+
   return (
     <WorkspaceLayout
       title={title}
@@ -38,6 +40,7 @@ not 'cataract'.`,
       solution={solution}
       initialTextArray={initialTextArray}
       solutionArray={solutionArray}
+      exerciseType={exType}
     />
   );
 };

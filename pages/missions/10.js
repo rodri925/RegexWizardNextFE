@@ -25,6 +25,8 @@ const missionTen = () => {
 
   const solutionArray = ['127.0.0.1', '0.0.0.0', '177.222.43.1'];
 
+  const exType = 'missions';
+
   return (
     <WorkspaceLayout
       title={title}
@@ -33,6 +35,7 @@ const missionTen = () => {
       solution={solution}
       initialTextArray={initialTextArray}
       solutionArray={solutionArray}
+      exerciseType={exType}
     />
   );
 };

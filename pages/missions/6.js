@@ -23,6 +23,8 @@ const missionSix = () => {
 
   const solutionArray = [];
 
+  const exType = 'missions';
+
   return (
     <WorkspaceLayout
       title={title}
@@ -31,6 +33,7 @@ const missionSix = () => {
       solution={solution}
       initialTextArray={initialTextArray}
       solutionArray={solutionArray}
+      exerciseType={exType}
     />
   );
 };
